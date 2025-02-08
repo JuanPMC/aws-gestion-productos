@@ -1,5 +1,4 @@
-ENTRY_LAMBDA_CODE="""
-import boto3, uuid
+ENTRY_LAMBDA_CODE="""import boto3, uuid
 
 client = boto3.resource('dynamodb')
 table = client.Table("orders")
@@ -11,8 +10,7 @@ def lambda_handler(event, context):
         print(str(payload))
         table.put_item(Item= {'orderID': str(uuid.uuid4()),'order':  payload})
 """
-NOTIFY_LAMBDA_CODE="""
-import boto3, json
+NOTIFY_LAMBDA_CODE="""import boto3, json
 
 client = boto3.client('sns')
 
